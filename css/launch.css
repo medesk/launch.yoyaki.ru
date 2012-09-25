@@ -1,0 +1,8 @@
+.site-desc {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'arial';
+  font-size: 12px;
+}
+
+#lrwrap {
+  -vendor-animation-delay: 2s;
+}
