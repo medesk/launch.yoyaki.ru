@@ -5,6 +5,9 @@ pageMap =
     id: '4F5IJTYE'
     showVk: yes
     showOk: yes
+    sharing:
+      description: 'Новый и удобный сервис по поиску и записи на услуги. 
+      Подпишись, чтобы быть первым кто узнает о запуске!'
 
 config = pageMap[document.location.search?.match(/(..)$/i)?[1]] ? pageMap['en']
 
@@ -20,6 +23,16 @@ monitorTextChange = =>
   unless url.match(/yoyaki/)
     setTimeout monitorTextChange, 1000
   else
+    if config.showOk
+      params = $.param
+        url: url
+        description: config.sharing?.description
+
+      $("#sharebuttons-#{config.id}").append $(\
+      """
+      <a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share?#{params}" data-mrc-config="{'nc' : '1', 'cm' : '1', 'ck' : '1', 'sz' : '20', 'st' : '2', 'tp' : 'ok', 'width': 64}">Нравится</a>
+      <script src="http://cdn.connect.mail.ru/js/loader.js" type="text/javascript" charset="UTF-8"></script>
+      """)
     if config.showVk
       $("#sharebuttons-#{config.id}").append $(\
       """
@@ -33,19 +46,13 @@ monitorTextChange = =>
             height: 20,
             width: 76, 
             pageUrl: '#{url}',
-            pageDescription: 'Тестовое описание'});
-          var vkFix = function() {
-            $('#vk_like').css('width','76px');
-            setTimeout(vkFix, 1000);
-          }
-          setTimeout(vkFix, 1000);
+            pageDescription: '#{config.sharing?.description}'});
+          //var vkFix = function() {
+          //  $('#vk_like').css('width','76px');
+          //  setTimeout(vkFix, 1000);
+          //}
+          //setTimeout(vkFix, 1000);
         </script>
-      """)
-    if config.showOk
-      $("#sharebuttons-#{config.id}").append $(\
-      """
-      <a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share" data-mrc-config="{'nc' : '1', 'cm' : '1', 'ck' : '1', 'sz' : '20', 'st' : '2', 'tp' : 'ok', 'width': 76}">Нравится</a>
-      <script src="http://cdn.connect.mail.ru/js/loader.js" type="text/javascript" charset="UTF-8"></script>
       """)
 
 setTimeout monitorTextChange, 4000
