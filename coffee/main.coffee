@@ -4,7 +4,6 @@ pageMap =
   'ru':
     id: '4F5IJTYE'
     showVk: yes
-    showOk: yes
     sharing:
       description: 'Новый и удобный сервис по поиску и записи на услуги. 
       Подпишись, чтобы быть первым кто узнает о запуске!'
@@ -40,7 +39,7 @@ monitorTextChange = =>
         </script>
         <span id="vk_like" style="display:inline-block"></span>
         <script type="text/javascript">
-          VK.init({apiId: 3143951, onlyWidgets: true});
+          VK.init({apiId: 3144190, onlyWidgets: true});
           VK.Widgets.Like("vk_like", {
             type: "mini", 
             height: 20,
