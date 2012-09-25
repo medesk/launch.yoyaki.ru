@@ -1,9 +1,12 @@
 pageMap =
   'en':
     id: '7UDFVQ71'
+    shareUrl: 'launch.yoyaki.com'
   'ru':
     id: '4F5IJTYE'
-    showVk: yes
+    shareUrl: 'launch.yoyaki.ru'
+    showVkontakte: yes
+    showOdnoklassniki: yes
     sharing:
       description: 'Новый и удобный сервис по поиску и записи на услуги. 
       Подпишись, чтобы быть первым кто узнает о запуске!'
@@ -11,7 +14,9 @@ pageMap =
 config = pageMap[document.location.hostname?.match(/(..)$/i)?[1]] ? pageMap['en']
 
 # setup launchrock widget
-$('.lrdiscoverwidget').attr('rel', config.id)
+$('.lrdiscoverwidget').attr
+  rel: config.id
+  data-share-url: config.shareUrl
 
 shareText = null
 
@@ -22,7 +27,7 @@ monitorTextChange = =>
   unless url.match(/yoyaki/)
     setTimeout monitorTextChange, 1000
   else
-    if config.showOk
+    if config.showOdnoklassniki
       params = $.param
         url: url
         description: config.sharing?.description
@@ -32,7 +37,7 @@ monitorTextChange = =>
       <a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share?#{params}" data-mrc-config="{'nc' : '1', 'cm' : '1', 'ck' : '1', 'sz' : '20', 'st' : '2', 'tp' : 'ok', 'width': 64}">Нравится</a>
       <script src="http://cdn.connect.mail.ru/js/loader.js" type="text/javascript" charset="UTF-8"></script>
       """)
-    if config.showVk
+    if config.showVkontakte
       $("#sharebuttons-#{config.id}").append $(\
       """
         <script type="text/javascript">
