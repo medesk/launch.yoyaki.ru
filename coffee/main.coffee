@@ -16,7 +16,7 @@ config = pageMap[document.location.hostname?.match(/(..)$/i)?[1]] ? pageMap['en'
 # setup launchrock widget
 $('.lrdiscoverwidget').attr
   rel: config.id
-  data-share-url: config.shareUrl
+  'data-share-url': config.shareUrl
 
 shareText = null
 
