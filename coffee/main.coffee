@@ -9,7 +9,7 @@ pageMap =
       description: 'Новый и удобный сервис по поиску и записи на услуги. 
       Подпишись, чтобы быть первым кто узнает о запуске!'
 
-config = pageMap[document.location.search?.match(/(..)$/i)?[1]] ? pageMap['en']
+config = pageMap[document.location.hostname?.match(/(..)$/i)?[1]] ? pageMap['en']
 
 # setup launchrock widget
 $('.lrdiscoverwidget').attr('rel', config.id)
