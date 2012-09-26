@@ -27,9 +27,27 @@
   });
 
   setTimeout(function() {
-    var counter, ninja;
-    $("#lrcontent-" + config.id).append($("<div id=\"ninja\" class=\"ninja animated fadeInDown\"></div>"));
+    var counter, jump, jumpAlways, ninja;
+    $("#lrcontent-" + config.id).append($("<div id=\"ninja\" class=\"ninja animated rollIn\">\n  <div class=\"eyes\"> \n    <div class=\"eye\">\n      <div class=\"iris\"></div>\n    </div>\n    <div class=\"eye\" style=\"margin-left:6px;\">\n        <div class=\"iris\"></div>\n    </div>\n  </div>\n</div>"));
     ninja = $('#ninja');
+    $('.iris').xeyes({
+      position: 'center',
+      radius: 'circular'
+    });
+    jump = function() {
+      return ninja.animate({
+        top: '-=30'
+      }, 'fast', 'swing', function() {
+        return ninja.animate({
+          top: '-79'
+        }, 'normal', 'easeOutBounce');
+      });
+    };
+    jumpAlways = function() {
+      jump();
+      return setTimeout(jumpAlways, 5000);
+    };
+    setTimeout(jumpAlways, 5000);
     counter = 0;
     $(window).mousemove(function(event) {
       counter++;
@@ -43,14 +61,16 @@
         }
       }, 100);
     });
+    $(window).dblclick(function() {
+      ninja.removeClass('rollIn fadeInLeftBig');
+      ninja.addClass('fadeOutRightBig');
+      return setTimeout(function() {
+        ninja.removeClass('fadeOutRightBig');
+        return ninja.addClass('fadeInLeftBig');
+      }, 500);
+    });
     return $(window).click(function() {
-      return ninja.animate({
-        top: '-=30'
-      }, 'fast', 'swing', function() {
-        return ninja.animate({
-          top: '-71'
-        }, 'normal', 'easeOutBounce');
-      });
+      return jump();
     });
   }, 3000);
 

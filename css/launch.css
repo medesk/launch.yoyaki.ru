@@ -11,7 +11,7 @@
   width: 71px;
   height: 79px;
   position: absolute;
-  top: -71px;
+  top: -79px;
   left: 170px;
   background-image: url('../img/ninja_no_eyes.png');
   animation-duration: 3s;
@@ -26,3 +26,21 @@
   -o-animation-delay: 0s;
 }
 
+.eyes {
+  position: absolute;
+  left: 12px;
+  top: 25px;
+  width: 40px;
+}
+
+.eye {
+    width: 16px; /*required, but can be any value*/
+    height: 16px; /*required, but can be any value*/
+    float: left;
+}
+
+.iris {
+    background-image: url('../img/ninja_left_eye.png');
+    width:7px; /*required, but can be any value*/
+    height:7px; /*required, but can be any value*/
+}

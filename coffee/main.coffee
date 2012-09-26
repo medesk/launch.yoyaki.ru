@@ -22,12 +22,41 @@ setTimeout =>
 # put ninja in place
   $("#lrcontent-#{config.id}").append $(
     """
-    <div id="ninja" class="ninja animated fadeInDown"></div>
+    <div id="ninja" class="ninja animated rollIn">
+      <div class="eyes"> 
+        <div class="eye">
+          <div class="iris"></div>
+        </div>
+        <div class="eye" style="margin-left:6px;">
+            <div class="iris"></div>
+        </div>
+      </div>
+    </div>
     """
     )
   ninja = $('#ninja')
+  $('.iris').xeyes
+    position: 'center'
+    radius: 'circular'
 
   # launch animation mode (cursor tracking)
+
+  jump = =>
+    ninja.animate
+      top: '-=30'
+    , 'fast'
+    , 'swing'
+    , =>
+      ninja.animate
+        top: '-79'
+      , 'normal'
+      , 'easeOutBounce'
+  jumpAlways = =>
+    jump()
+    setTimeout jumpAlways, 5000
+
+  setTimeout jumpAlways, 5000
+
   counter = 0
   $(window).mousemove (event) =>
     counter++
@@ -40,16 +69,15 @@ setTimeout =>
         , 'easeInOutElastic'
         counter = 0
     , 100
+  $(window).dblclick =>
+    ninja.removeClass 'rollIn fadeInLeftBig'
+    ninja.addClass 'fadeOutRightBig'
+    setTimeout =>
+      ninja.removeClass 'fadeOutRightBig'
+      ninja.addClass 'fadeInLeftBig'
+    , 500
   $(window).click =>
-    ninja.animate
-      top: '-=30'
-    , 'fast'
-    , 'swing'
-    , =>
-      ninja.animate
-        top: '-71'
-      , 'normal'
-      , 'easeOutBounce'
+    jump()
 , 3000
 
 # adding 
