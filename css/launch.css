@@ -8,7 +8,8 @@
 }
 
 .dlrbg {
-  min-height: 760px;
+  min-width: 1024px;
+  min-height: 576px;
 }
 
 .ninja {
