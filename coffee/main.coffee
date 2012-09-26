@@ -11,13 +11,48 @@ pageMap =
       description: 'Новый и удобный сервис по поиску и записи на услуги. 
       Подпишись, чтобы быть первым кто узнает о запуске!'
 
-config = pageMap[document.location.hostname?.match(/(..)$/i)?[1]] ? pageMap['en']
+config = pageMap[window.location.hostname?.match(/(..)$/i)?[1]] ? pageMap['en']
 
 # setup launchrock widget
 $('.lrdiscoverwidget').attr
   rel: config.id
   'data-share-url': config.shareUrl
 
+setTimeout =>
+# put ninja in place
+  $("#lrcontent-#{config.id}").append $(
+    """
+    <div id="ninja" class="ninja animated fadeInDown"></div>
+    """
+    )
+  ninja = $('#ninja')
+
+  # launch animation mode (cursor tracking)
+  counter = 0
+  $(window).mousemove (event) =>
+    counter++
+    setTimeout =>
+      counter--
+      unless counter
+        ninja.animate
+          left: Math.floor(event.pageX/$(window).width() * 340)
+        , '700'
+        , 'easeInOutElastic'
+        counter = 0
+    , 100
+  $(window).click =>
+    ninja.animate
+      top: '-=30'
+    , 'fast'
+    , 'swing'
+    , =>
+      ninja.animate
+        top: '-71'
+      , 'normal'
+      , 'easeOutBounce'
+, 3000
+
+# adding 
 shareText = null
 
 monitorTextChange = =>

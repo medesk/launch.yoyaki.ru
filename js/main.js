@@ -19,12 +19,40 @@
     }
   };
 
-  config = (_ref = pageMap[(_ref1 = document.location.hostname) != null ? (_ref2 = _ref1.match(/(..)$/i)) != null ? _ref2[1] : void 0 : void 0]) != null ? _ref : pageMap['en'];
+  config = (_ref = pageMap[(_ref1 = window.location.hostname) != null ? (_ref2 = _ref1.match(/(..)$/i)) != null ? _ref2[1] : void 0 : void 0]) != null ? _ref : pageMap['en'];
 
   $('.lrdiscoverwidget').attr({
     rel: config.id,
     'data-share-url': config.shareUrl
   });
+
+  setTimeout(function() {
+    var counter, ninja;
+    $("#lrcontent-" + config.id).append($("<div id=\"ninja\" class=\"ninja animated fadeInDown\"></div>"));
+    ninja = $('#ninja');
+    counter = 0;
+    $(window).mousemove(function(event) {
+      counter++;
+      return setTimeout(function() {
+        counter--;
+        if (!counter) {
+          ninja.animate({
+            left: Math.floor(event.pageX / $(window).width() * 340)
+          }, '700', 'easeInOutElastic');
+          return counter = 0;
+        }
+      }, 100);
+    });
+    return $(window).click(function() {
+      return ninja.animate({
+        top: '-=30'
+      }, 'fast', 'swing', function() {
+        return ninja.animate({
+          top: '-71'
+        }, 'normal', 'easeOutBounce');
+      });
+    });
+  }, 3000);
 
   shareText = null;
 
