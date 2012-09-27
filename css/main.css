@@ -84,6 +84,9 @@ body:before {
 	margin: 110px auto auto !important;
 	z-index: 100;
 }
+.light-c .site{
+	background: url('../img/content.png') repeat;
+}
 hr {
     display: block;
     height: 1px;
