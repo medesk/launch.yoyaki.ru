@@ -85,7 +85,7 @@ body:before {
 	z-index: 100;
 }
 .light-c .site{
-	background: url('../img/content.png') repeat;
+	background: url('../img/content.png') repeat !important;
 }
 hr {
     display: block;
