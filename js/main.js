@@ -83,6 +83,9 @@
     }
     url = shareText.val();
     if (!url.match(/yoyaki/)) {
+
+
+
       return setTimeout(monitorTextChange, 1000);
     } else {
       if (config.showOdnoklassniki) {
