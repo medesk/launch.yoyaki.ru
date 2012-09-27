@@ -13,8 +13,8 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
-    min-width: 1024px !important;
-    min-height: 576px !important;
+    min-width: 1024px;
+    background: url('../img/bg.jpg') repeat;
 }
 
 ::-moz-selection {
@@ -27,6 +27,63 @@ body {
     text-shadow: none;
 }
 
+/*-------sticky footer settings----------*/
+html, body {height: 100%;}
+
+#wrap {min-height: 100%;}
+
+#main {
+	overflow: auto;
+	padding-bottom: 340px;
+	position: relative
+	z-index: 100;
+	}
+	
+#footer {
+	position: relative;
+	z-ndex: 50;
+	margin-top: -427px;
+	height: 427px;
+	clear:both;
+	background: url('../img/footer.jpg') bottom repeat-x;
+	} 
+
+/*Opera Fix*/
+body:before {
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	margin-top:-32767px;/
+}
+/*-------End sticky footer settings----------*/
+
+.earth{
+	display: block;
+	position: absolute;
+	z-index: 50;
+	height: 273px;
+	width: 1024px;
+	left: 50%;
+	margin-left: -512px;
+	background: url('../img/earth.png') center bottom no-repeat;
+	bottom: 154px;
+}
+.tags {
+	display: block;
+	position: absolute;
+	z-index: 50;
+	height: 99px;
+	width: 1024px;
+	left: 50%;
+	margin-left: -512px;
+	bottom: 20px;
+}
+
+.site.lrcontent, .lrdiscoverwidget{
+	margin: 110px auto auto !important;
+	z-index: 100;
+}
 hr {
     display: block;
     height: 1px;
