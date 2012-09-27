@@ -50,6 +50,7 @@
     setTimeout(jumpAlways, 5000);
     counter = 0;
     $(window).mousemove(function(event) {
+      event.stopPropagation();
       counter++;
       return setTimeout(function() {
         counter--;
@@ -83,9 +84,6 @@
     }
     url = shareText.val();
     if (!url.match(/yoyaki/)) {
-
-
-
       return setTimeout(monitorTextChange, 1000);
     } else {
       if (config.showOdnoklassniki) {

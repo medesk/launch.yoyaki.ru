@@ -59,6 +59,7 @@ setTimeout =>
 
   counter = 0
   $(window).mousemove (event) =>
+    event.stopPropagation()
     counter++
     setTimeout =>
       counter--
